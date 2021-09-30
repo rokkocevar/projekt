@@ -1,29 +1,34 @@
-
         <?php
-        require_once 'baza.php';
+        include_once 'baza.php';
   
         
         $fn=$_POST['fname'];
         $ln=$_POST['lname'];
         $ns=$_POST['naslov'];
-      
+      $em=$_POST['email'];
         $sp=$_POST['spol'];
      
-        $em=$_POST['email'];
+        
         $ps=$_POST['pass'];
+        $pd=$_POST['pass2'];
         
-        //echo $fn;
-      //   echo $ln;
-          //echo $ns;
-           //echo $sp;
-            //echo $fn;
+  if (!empty($fn) && !empty($ln)
+        && !empty($em) && !empty($ns)
+        && !empty($sp) && !empty($ps)
+        && ($ps == $pd)) {
         
-        $hp= password_hash($ps, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO uporabniki(ime, priimek, naslov, email, spol, geslo)
-        VALUES('$fn','$ln','$ns', '$em', '$sp','$hp');";
-        
-         $result = mysqli_query($link, $sql);
-        header("Location:login.php");
-
+       $pass = password_hash($ps, PASSWORD_DEFAULT);
     
-        ?>
+     $sql = "INSERT INTO uporabniki(ime, priimek, naslov, email, spol, geslo)
+  VALUES('$fn','$ln','$ns','$em','$sp','$pass')";
+			
+
+
+   $result = mysqli_query($link, $sql);
+    
+    header("Location: login.php");
+}
+else {
+    header("Location: register.php");
+}
+?>
