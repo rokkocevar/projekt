@@ -9,33 +9,40 @@
     <body>
         <?php
             require_once 'baza.php';
-            include 'session.php';
+            session_start();
             
-                  $m= $_POST['ema'];
-                 $p = $_POST['ges'];
-          $sql="SELECT * FROM uporabniki WHERE email ='$m'; ";
+                  $ema = $_POST['em'];
+                 $pass = $_POST['ge'];
+                 
+           
+              
+               
+          $sql2="SELECT * FROM uporabniki WHERE email='$ema'; ";
            
             
-            $result=mysqli_query($link, $sql);
+            $result2=mysqli_query($link, $sql2);
            
 
-            $st =mysqli_num_rows($result);
+            $st=mysqli_num_rows($result2);
             
+         
             
-            
-        $row = mysqli_fetch_array($result);
-        if(password_verify($p, $row['geslo'])) {
-        $_SESSION['ime']=$row['ime'];
-          $_SESSION['priimek']=$row['priimek'];
-            
+         
+        $row = mysqli_fetch_array($result2);
+ 
+        
+        if(password_verify($pass, $row['geslo'])) {
+         $_SESSION['fname']=$row['ime'];
+          $_SESSION['lname']=$row['priimek'];
+            $_SESSION['idu']=$row['id_u'];
+          
              
-              
-            }
-            else
-            {
-                header("Refresh:3 url=login.php");
-                echo "Email ali geslo ni pravilno!";
-            }
+          header("Location: index.php");
+            
+           }
+          
+         //  header("Location: login.php");
+          
         ?>
     </body>
 </html>
