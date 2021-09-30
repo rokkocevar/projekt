@@ -29,21 +29,35 @@
       <ul class="navbar-nav">
         <li class="nav-item">
         
+        <?php
+            if(isset($_SESSION['idu'])|| isset($_SESSION['fname']))
+            {
+                ?><a class="nav-link" href="profil.php">Vaši profil</a><?php 
+            }
             
-                <a class="nav-link" href="register.php">Registracija</a>
+            else
+            {
+                ?><a class="nav-link" href="register.php">Registracija</a><?php
+            }
+            ?>
+           
             
            
         </li>
         <li class="nav-item">
             
-                <a class="nav-link" href="login.php">Prijava</a><?php
-            
-                        if(isset($_SESSION['fname'])){
+               <?php
+            if(isset($_SESSION['idu'])|| isset($_SESSION['fname'])) {
                            $imeu=$_SESSION['fname'];
                                 echo '<a id="ds">prijavljeni ste kot: '.$imeu. '</a>';
                                  echo '<a  class="k" ="active" href="odjava.php"> odjava</a>';
                                     }
-   ?>
+        else
+            {
+                
+                ?><a class="nav-link" href="login.php">Prijava</a><?php
+            }
+?>
         </li>
           </ul>
         </li>
