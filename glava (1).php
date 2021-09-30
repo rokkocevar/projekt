@@ -1,6 +1,15 @@
 <?php 
     include 'session.php';
 ?>
+
+<style>
+    .k {
+        color: black;
+    }
+    #ds{
+        color:;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="sl">
     <head>
@@ -19,28 +28,22 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-        <?php
-            if(isset($_SESSION['id'])|| isset($_SESSION['email']))
-            {
-                ?><a class="nav-link" href="lastnik.php">Vaši oglasi</a><?php 
-            }
-            else
-            {
-                ?><a class="nav-link" href="register.php">Registracija</a><?php
-            }
-            ?>
+        
+            
+                <a class="nav-link" href="register.php">Registracija</a>
+            
+           
         </li>
         <li class="nav-item">
-            <?php
-            if(isset($_SESSION['id'])|| isset($_SESSION['email']))
-            {
-                ?><a class="nav-link" href="logout.php">Odjava</a><?php
-            }
-            else
-            {
-                ?><a class="nav-link" href="login.php">Prijava</a><?php
-            }
-            ?>
+            
+                <a class="nav-link" href="login.php">Prijava</a><?php
+            
+                        if(isset($_SESSION['fname'])){
+                           $imeu=$_SESSION['fname'];
+                                echo '<a id="ds">prijavljeni ste kot: '.$imeu. '</a>';
+                                 echo '<a  class="k" ="active" href="odjava.php"> odjava</a>';
+                                    }
+   ?>
         </li>
           </ul>
         </li>
