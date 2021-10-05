@@ -35,14 +35,25 @@
          $_SESSION['fname']=$row['ime'];
           $_SESSION['lname']=$row['priimek'];
             $_SESSION['idu']=$row['id_u'];
-          
-             
-          header("Location: index.php");
+             $_SESSION['adminu']=$row['admin'];
             
-           }
+            if($_SESSION['adminu'] == 1){
+    header("Location: admin.php");
+}
+
+
+else{
+ header("Refresh:3 url=index.php");
+}
+            
+              
+               }
+ 
           
-         //  header("Location: login.php");
-          
+         else{
+           header("Refresh:3 url=login.php");
+                         }
+       
         ?>
     </body>
 </html>
