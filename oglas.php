@@ -31,12 +31,20 @@
                         <option value="5">RENAULT</option>
                     </select>
   
-                    <select name="model" class="form-control" style="width: 50%" id="g">
-                    <option value="0" selected disabled>Izberite model</option>
+                    
+                   
+                    <?php
+                    $_SESSION['znamka'] = $value;
+                   
+                    ?>
+                    </form>
+                    <form  method="POST" action="oglas_baza.php"  enctype="multipart/form-data" >
+                     <select name="model" class="form-control" style="width: 50%" id="g">
+                     <option value="0" selected disabled>Izberite model</option>
                          <?php
-                            $sql1="SELECT * FROM modeli m WHERE m.znamka_id = $value ";
-                            $result1=mysqli_query($link, $sql1);
-                            while($row = mysqli_fetch_array($result1))
+                            $sql2="SELECT * FROM modeli m WHERE m.znamka_id = $value ";
+                            $result2=mysqli_query($link, $sql2);
+                            while($row = mysqli_fetch_array($result2))
                             {
                                 echo '<option value="'.$row['id'].'">'.$row['ime_m'].'</option>';
                                 $_SESSION['model']  = $row['id'];
@@ -44,12 +52,6 @@
                            
                         ?>
                     </select>
-                    <?php
-                    $_SESSION['znamka'] = $value;
-                   
-                    ?>
-                    </form>
-                    <form  method="POST" action="oglas_baza.php"  enctype="multipart/form-data" >
                    <input type="number" name="cena" placeholder="vnesite ceno" class="form-control"><br>
                    <input type="number" name="letnik" placeholder="vnesite letnik" class="form-control"><br>
                    <input type="number" name="kw" placeholder="vnesite moc v kw" class="form-control"><br>
@@ -63,10 +65,24 @@
                             while($row = mysqli_fetch_array($result1))
                             {
                                 echo '<option value="'.$row['id'].'">'.$row['ime_b'].'</option>';
-                                $_SESSION['barva']  = $row['id'];
                             }
                         ?>
                     </select>
+                    <script type="text/javascript">
+			function update() {
+				var select = document.getElementById('barva');
+				var option = select.options[select.selectedIndex];
+
+				document.getElementById('value').value = option.value;
+			
+			}
+
+			update();
+			
+		</script>
+		<?php
+		$_SESSION['barva']  = $_GET['value'];
+		?>
                     <input type="number" name="km"  placeholder="vnesite kilometre" class="form-control"><br>
                     <input type="file" name="slike" placeholder="vnesite sliko"><br>
                     
