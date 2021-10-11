@@ -37,6 +37,11 @@ include 'session.php';
           margin-left: 100px;
           
       }
+      .r{
+          text-decoration:none;
+          color: black;
+          margin-right: 20px;
+      }
       
   </style>
     <body>
@@ -49,8 +54,11 @@ include 'session.php';
        
         <form  method="post">
             <div class="contentt">
-      
-           <a href="filtri.php" id="p">filter</a>
+      <div><b>filter</b></div>
+           <a href="filtri.php" class="r" >cena</a>
+             <a href="index2.php" class="r" >moč</a>
+              <a href="index3.php" class="r">letnik</a>
+               <a href="index4.php" class="r">km</a>
        
        <?php
 $sql="SELECT * FROM vozila v
@@ -59,7 +67,7 @@ INNER JOIN modeli m ON m.id = v.model_id
 INNER JOIN znamke z ON z.id = m.znamka_id
 INNER JOIN barve b ON b.id = v.barva_id
 INNER JOIN uporabniki u ON u.id_u = v.uporabnik_id
-ORDER BY v.cena desc
+
 
 ;
 ";
