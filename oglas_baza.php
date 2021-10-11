@@ -9,8 +9,8 @@
       $letnik=$_POST['letnik'];
         $cena=$_POST['cena'];
         $znamka = $_SESSION['znamka'];
-         $model = $_SESSION['model'];
-     $barva = $_SESSION['barva'];
+         $model = $_POST['model'];
+     $barva = $_POST['barva'];
      $id = $_SESSION['idu'];
   
       $slike = $_POST['slike'];
@@ -61,7 +61,7 @@
                     $result3= mysqli_query($link, $sql3);
                     
                    
- header("Location: index.php");
+ header("Location: oglas.php");
 }
 
     
@@ -70,9 +70,12 @@
    
 }
 else {
-    header("Location: oglas.php");
+    header("Location: index.php");
 }
 ?>
+
+
+
 
 
 
