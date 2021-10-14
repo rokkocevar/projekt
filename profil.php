@@ -1,7 +1,7 @@
 <?php
 include 'glava.php';
-include "baza.php";
- session_start();
+include 'baza.php';
+include 'session.php';
 ?>
 <style>
 
@@ -78,6 +78,8 @@ while($row=mysqli_fetch_array($result2))
 </td><td id="u" class="a">'.$row['cena'].' €</td><td>';
  $_SESSION['sliki'] =$row['id_s'];
 echo '<td class="a">'.'<a href="brisip.php?ajdi='.$row['id_v'].'"> briši </a>'.'</td>';
+echo '<td class="a">'.'<a href="posodoiv.php?aj='.$row['id_v'].'">posodobi </a>'.'</td>';
+
 echo '</tr>';
 
  }
