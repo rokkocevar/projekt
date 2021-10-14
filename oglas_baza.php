@@ -1,4 +1,4 @@
-  <?php
+ <?php
         include_once 'baza.php';
   include 'session.php';
         
@@ -14,11 +14,13 @@
      $id = $_SESSION['idu'];
   
       $slike = $_POST['slike'];
-
- 
-
-       
-        
+   $_SESSION['modelp'] = $model;
+ $_SESSION['barvap'] = $barva;
+ $_SESSION['cenap'] = $cena;
+        $_SESSION['letnikp'] = $letnik;
+          $_SESSION['kwpu'] = $kw;
+            $_SESSION['ccmu'] = $ccm;
+            $_SESSION['kmu'] = $km;
   if (!empty($km) && !empty($id)
         && !empty($ccm) && !empty($kw)
         && !empty($letnik) && !empty($cena)
@@ -61,7 +63,7 @@
                     $result3= mysqli_query($link, $sql3);
                     
                    
- header("Location: oglas.php");
+ header("Location: profil.php");
 }
 
     
