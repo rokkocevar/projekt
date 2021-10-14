@@ -8,8 +8,35 @@
     </head>
     <body>
         <?php
-            require_once 'baza.php';
+        require_once 'baza.php';
             session_start();
+require_once('settings.php');
+require_once('google-login-api.php');
+
+// Google passes a parameter 'code' in the Redirect Url
+if(isset($_GET['code'])) {
+	try {
+		$gapi = new GoogleLoginApi();
+		
+		// Get the access token 
+		$data = $gapi->GetAccessToken(CLIENT_ID, CLIENT_REDIRECT_URL, CLIENT_SECRET, $_GET['code']);
+		
+		// Get user information
+		$user_info = $gapi->GetUserProfileInfo($data['access_token']);
+	}
+	catch(Exception $e) {
+		echo $e->getMessage();
+		exit();
+	}
+}
+$tz =$user_info['id'];
+$zt = $user_info['email'];
+//$sql3="INSERT INTO uporabniki (ime_u, priimek, naslov, email, spol, geslo)
+ //VALUES('$tz',NULL, NULL, '$zt', NULL, NULL)";
+   //         $result3=mysqli_query($link, $sql3);
+     //          $st2=mysqli_num_rows($result3);
+      echo $tz ;  
+     echo $zt ; 
             
                   $ema = $_POST['em'];
                  $pass = $_POST['ge'];
